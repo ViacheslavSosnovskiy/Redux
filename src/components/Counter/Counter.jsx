@@ -1,12 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { increment, decrement } from '../../store/counter/actions'
+import { increment, decrement} from '../../store/counter/counterSlice'
+
 
 const Counter = () => {
     const {total, step} = useSelector((state) => state.counter)
     const dispatch = useDispatch()
 
-    const handleClickPlus = dispatch(increment(step))
+    const handleClickPlus = dispatch(increment (step))
     const handleClickMinus = dispatch(decrement(step))
   return (
     <>

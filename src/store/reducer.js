@@ -1,8 +1,14 @@
 import { combineReducers } from "redux"
-import { counterReducer } from "./counter/counterReducer"
 import { todoReducer } from "./todo/todoReducer"
+import { counterReducer } from "./counter/counterSlice"
+import booksReducer from './books/booksReducer'
+import { pokemonApi } from "./pokemon/pokemon"
+import { contactsApi } from "./contscts/contactsSlice"
 
 export const reducer = combineReducers({
     counter: counterReducer,
     todo: todoReducer,
+    books: booksReducer,
+    [pokemonApi.reducerPath]: pokemonApi.reducer,
+    [contactsApi.reducerPath]: contactsApi.reducer,
 })
