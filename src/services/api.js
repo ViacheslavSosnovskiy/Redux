@@ -1,8 +1,12 @@
-const BASE_URL = "https://api.themoviedb.org/3";
-const API_KEY = 'cec6f368dbee14c2300729e2404dede8';
+const BASE_URL = "https://newsapi.org/v2";
+const API_KEY = '75e6d13ff6fd46bfbb1d82a5e48ed5ff';
 
-export const getSearchMovie = (query) => {
-  fetch(`${BASE_URL}/search/movie?query=${query}&api_key=${API_KEY}`).then((response) =>
-    response.json()
-  )
+export const getTopNews = async () => {
+  const data = await fetch(`${BASE_URL}/top-headlines?apiKey=${API_KEY}`)
+  return await data.json()
 };
+
+export const getSearchNews = async (searchText) => {
+  const data = await fetch(`${BASE_URL}/everything?q=${searchText}&apiKey=${API_KEY}`)
+  return await data.json()
+}

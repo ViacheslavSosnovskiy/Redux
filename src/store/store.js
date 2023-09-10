@@ -12,11 +12,24 @@ const persistConfig = {
     blackList: ['counter']
   }
 
+const customMiddleware = (state) => {
+  return (next) => {
+    return (action) => {
+      if(typeof action === 'function') {
+        action(state.dispatch)
+        return
+      }
+      return next(action)
+    }
+  }
+}
+
 const persistedReducer = persistReducer(persistConfig, reducer)
  
 //  у нас редакс тулкит поэтому мы используем через ключ редюсер 
 export const store = configureStore({ 
   reducer: persistedReducer,
+  // middleware: [customMiddleware],
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware(),
     pokemonApi.middleware,
